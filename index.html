@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متطلبات السحب - مواقع التعدين</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            min-width: 1200px; /* الحد الأدنى لعرض الصفحة */
+        }
+        
+        .desktop-container {
+            width: 95vw;
+            max-width: 1400px;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .table-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            height: 100%;
+        }
+        
+        thead {
+            background: linear-gradient(90deg, #4361ee, #3a0ca3);
+            height: 80px;
+        }
+        
+        th {
+            padding: 25px 20px;
+            font-size: 1.6rem;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        tbody {
+            display: block;
+            height: calc(100% - 80px);
+            overflow-y: auto;
+        }
+        
+        tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            height: 50%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.01);
+        }
+        
+        td {
+            padding: 40px 30px;
+            text-align: center;
+            font-size: 1.5rem;
+            vertical-align: middle;
+            height: 100%;
+        }
+        
+        .site-name {
+            font-weight: bold;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .bnb-icon {
+            color: #f0b90b;
+            font-size: 2.2rem;
+        }
+        
+        .doge-icon {
+            color: #c2a633;
+            font-size: 2.2rem;
+        }
+        
+        .withdrawal-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 15px;
+        }
+        
+        .withdrawal-info {
+            font-size: 1.8rem;
+            padding: 20px 35px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.25);
+            display: inline-block;
+            font-weight: 700;
+            min-width: 400px;
+        }
+        
+        .bnb-bg {
+            background: linear-gradient(135deg, rgba(240, 185, 11, 0.2), rgba(240, 185, 11, 0.1));
+            border-left: 6px solid #f0b90b;
+            box-shadow: 0 5px 15px rgba(240, 185, 11, 0.2);
+        }
+        
+        .doge-bg {
+            background: linear-gradient(135deg, rgba(194, 166, 51, 0.2), rgba(194, 166, 51, 0.1));
+            border-left: 6px solid #c2a633;
+            box-shadow: 0 5px 15px rgba(194, 166, 51, 0.2);
+        }
+        
+        .note {
+            font-size: 1.2rem;
+            color: #aaa;
+            font-style: italic;
+        }
+        
+        .btn-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 22px 50px;
+            font-size: 1.6rem;
+            font-weight: bold;
+            border-radius: 70px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+            min-width: 250px;
+        }
+        
+        .earn-btn {
+            background: linear-gradient(90deg, #4cc9f0, #4361ee);
+            color: white;
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.5);
+        }
+        
+        .earn-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(67, 97, 238, 0.7);
+        }
+        
+        .earn-btn:active {
+            transform: translateY(1px) scale(0.98);
+        }
+        
+        /* تحديد عرض الأعمدة */
+        th:nth-child(1), td:nth-child(1) {
+            width: 30%;
+        }
+        
+        th:nth-child(2), td:nth-child(2) {
+            width: 40%;
+        }
+        
+        th:nth-child(3), td:nth-child(3) {
+            width: 30%;
+        }
+        
+        /* شريط التمرير */
+        tbody::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        tbody::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        tbody::-webkit-scrollbar-thumb {
+            background: #4361ee;
+            border-radius: 4px;
+        }
+        
+        tbody::-webkit-scrollbar-thumb:hover {
+            background: #3a0ca3;
+        }
+        
+        /* رسالة للمستخدمين على الجوال */
+        .mobile-warning {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #1a1a2e;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            z-index: 1000;
+            font-size: 1.5rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .mobile-warning {
+                display: flex;
+            }
+            
+            body {
+                overflow: auto;
+                min-width: unset;
+            }
+        }
+        
+        /* تأثيرات إضافية */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(67, 97, 238, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- تحذير للمستخدمين على الجوال -->
+    <div class="mobile-warning">
+        <div>
+            <i class="fas fa-desktop" style="font-size: 4rem; color: #4361ee; margin-bottom: 20px;"></i>
+            <h2>هذه الصفحة مصممة لسطح المكتب فقط</h2>
+            <p style="margin-top: 20px; font-size: 1.2rem; color: #aaa;">
+                للاستخدام الأمثل، يرجى فتح هذه الصفحة على جهاز كمبيوتر<br>
+                أو تدوير شاشة جهازك إلى الوضع الأفقي
+            </p>
+        </div>
+    </div>
+    
+    <div class="desktop-container">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>اسم الموقع</th>
+                        <th>الحد الأدنى للسحب</th>
+                        <th>الوصول إلى الموقع</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="site-name">
+                                <i class="fas fa-dog doge-icon"></i>
+                                DogeKing.io
+                            </div>
+                        </td>
+                        <td>
+                            <div class="withdrawal-container">
+                                <div class="withdrawal-info doge-bg">
+                                    15 عملة BNB
+                                </div>
+                                <div class="note">للبدء في سحب أرباحك</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-container">
+                                <a href="https://dogeking.io/?ref=Simonx11" target="_blank" class="btn earn-btn pulse">
+                                    <i class="fas fa-gem"></i> Earn
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="site-name">
+                                <i class="fab fa-bnb bnb-icon"></i>
+                                BNBKing.io
+                            </div>
+                        </td>
+                        <td>
+                            <div class="withdrawal-container">
+                                <div class="withdrawal-info bnb-bg">
+                                    0.0001 عملة BNB
+                                </div>
+                                <div class="note">للبدء في سحب أرباحك</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-container">
+                                <a href="https://bnbking.io/?ref=mostafatoza" target="_blank" class="btn earn-btn pulse">
+                                    <i class="fas fa-gem"></i> Earn
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        // التأكيد على أن الصفحة مثبتة لسطح المكتب
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('تم تحميل صفحة سطح المكتب المثبتة');
+            console.log('العرض الحالي للشاشة: ' + window.innerWidth + 'px');
+            
+            // إضافة تأثيرات تفاعلية للأزرار
+            const earnButtons = document.querySelectorAll('.earn-btn');
+            
+            earnButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // تأثير النقر على الزر
+                    this.classList.remove('pulse');
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                        this.classList.add('pulse');
+                    }, 300);
+                    
+                    // فتح الرابط في نافذة جديدة
+                    e.preventDefault();
+                    const url = this.getAttribute('href');
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                });
+            });
+            
+            // إضافة تأثير عند التمرير على الصفوف
+            const tableRows = document.querySelectorAll('tbody tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.3)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = 'none';
+                });
+            });
+            
+            // تحذير إذا كانت الشاشة صغيرة
+            function checkScreenSize() {
+                const warning = document.querySelector('.mobile-warning');
+                if (window.innerWidth < 1200) {
+                    warning.style.display = 'flex';
+                } else {
+                    warning.style.display = 'none';
+                }
+            }
+            
+            // التحقق من حجم الشاشة عند التحميل وعند تغيير الحجم
+            checkScreenSize();
+            window.addEventListener('resize', checkScreenSize);
+        });
+    </script>
+</body>
+</html>
